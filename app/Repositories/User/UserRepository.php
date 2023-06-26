@@ -21,11 +21,11 @@ class UserRepository
 
     public function save($data)
     {
-        $dep_id=Departamento::factory()->create([
-            'departamento'=>'RC_Cliente',
-        ]);
+        // $dep_id=Departamento::factory()->create([
+        //     'departamento'=>'RC_Cliente',
+        // ]);
         $register = $this->entety::create([
-            'departamento_id'=>$dep_id->id,
+           // 'departamento_id'=>$dep_id->id,
             'name' => $data['name'],
             'email' => $data['email'],
             'acesso' => 'RC',

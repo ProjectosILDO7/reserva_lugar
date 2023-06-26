@@ -522,7 +522,7 @@ export default {
                     this.erros = error
                     notify({
                         title: 'Erro',
-                        text: "Ocorreu um erro durante o processo de cadastro!",
+                        text: "Ocorreu um erro durante o processo de cadastro! ou, só pode inserir uma informação no sistema",
                         type: 'warn'
                     })
 

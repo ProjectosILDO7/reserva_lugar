@@ -372,7 +372,7 @@ export default {
     computed: {
 
         departamentos() {
-            return this.$store.getters.todosDepartamentos(this.filter)
+            return this.$store.getters.loadingDepartamentos
         },
 
         totalDeDepartamento() {

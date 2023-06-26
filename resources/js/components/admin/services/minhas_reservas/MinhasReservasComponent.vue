@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        <div class="card shadow mt-2">
+        <div class="card shadow mt-2" v-if="items!=0">
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-sm table-striped">
@@ -39,6 +39,10 @@
                     </table>
                 </div>
             </div>
+        </div>
+
+        <div class="col-12 text-center mt-2" v-else>
+            <span class="text-danger"><strong>De momento não solicitou nenhuma reserva...!</strong></span>
         </div>
     </div>
 </template>

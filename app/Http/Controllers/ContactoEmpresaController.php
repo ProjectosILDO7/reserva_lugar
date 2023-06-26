@@ -41,14 +41,20 @@ class ContactoEmpresaController extends Controller
     public function store(StoreContacto_empresaRequest $request)
     {
         //
-        $empresa = $this->empresa->create([
-            "empresa" => $request->empresa,
-            "email" => $request->email,
-            "facebook" => $request->facebook,
-            "whatsapp" => $request->whatsapp,
-            "telemovel" => $request->telemovel
-        ]);
-
+        $existe=$this->empresa->all();
+        if(count($existe)!=0){
+            return response()->json(['total'=>$existe],402);
+        }else{
+            
+            $empresa = $this->empresa->create([
+                "empresa" => $request->empresa,
+                "email" => $request->email,
+                "facebook" => $request->facebook,
+                "whatsapp" => $request->whatsapp,
+                "telemovel" => $request->telemovel
+            ]);
+        }
+        
         if(isset($empresa)){
             return response()->json($empresa);
         }

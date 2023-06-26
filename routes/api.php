@@ -5,6 +5,7 @@
 use App\Http\Controllers\Api\Auth\RegisterControllerUser;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\contacto_empresaOflineController;
 use App\Http\Controllers\ContactoEmpresaController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\ExportExcelController;
@@ -113,6 +114,8 @@ Route::post('/registerContacto_empresa', [ContactoEmpresaController::class, 'sto
 Route::get('/getContacto_empresa/{id}', [ContactoEmpresaController::class, 'edit'])->middleware('api');
 Route::put('/updateContacto_empresa/{id}', [ContactoEmpresaController::class, 'update'])->middleware('api');
 Route::get('/apagarContacto_empresa/{id}', [ContactoEmpresaController::class, 'destroy'])->middleware('api');
+
+Route::get('/getContacto', [contacto_empresaOflineController::class, 'index']);
 
 Route::middleware('api')->get('/user', function (Request $request) {
     return $request->user();

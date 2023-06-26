@@ -7,11 +7,19 @@
             <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 py-4 text-center">
                 <h1>Contacto</h1>
             </div>
-            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 border-start py-4">
+
+            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 border-start py-4" v-if="contacto_empresa==''">
                 <ul>
-                    <li>Ildo Marques Cuema</li>
+                    <li>Ildo Marques Cuema - <strong>Desenvolvedor</strong></li>
                     <li><i class="fa-brands fa-facebook fa-lg text-primary"></i> Ildocuema</li>
                     <li><i class="fa-brands fa-whatsapp fa-lg text-success"></i> +244 921 923 232</li>
+                </ul>
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 border-start py-4" v-else>
+                <ul v-for="cont, index in contacto_empresa" :key="index">
+                    <li>{{ cont.empresa }}</li>
+                    <li><i class="fa-brands fa-facebook fa-lg text-primary"></i> {{ cont.facebook }}</li>
+                    <li><i class="fa-brands fa-whatsapp fa-lg text-success"></i> +244 {{ cont.whatsapp }}</li>
                 </ul>
             </div>
 
@@ -69,10 +77,13 @@ export default {
             erros:[ { email:'', telemovel:'', comentario:''} ],
             items: { email: '', telemovel: '', comentario: '' },
             axiosConfig : { headers: {'Content-Type': 'application/json;charset=UTF-8', "Access-Control-Allow-Origin": "*",}},
-            loading: false
+            loading: false,
+            contacto_empresa:'',
         }
     },
-
+    created(){
+        this.getContacto();
+    },
     methods: {
         enviar() {
             this.loading=true
@@ -94,7 +105,19 @@ export default {
                     this.loading=false,
                     this.items = { email: '', telemovel: '', comentario: '' }
                 })
+        },
+
+        getContacto(){
+            axios.get(`${URL_API}/getContacto`,{
+                headers:{'Content-Type':'aplication/json'}
+            })
+            .then((response)=>{
+                console.log(response.data)
+                this.contacto_empresa=response.data;
+            })
         }
-    }
+    },
+
+    
 }
 </script>

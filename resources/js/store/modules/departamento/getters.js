@@ -3,8 +3,13 @@ const getters = {
         return state.items.filter(dep => dep.departamento.includes(filter))
     },
 
+    loadingDepartamentos(state){
+        console.log(state)
+        return state.items
+    },
+
     todosNomesDepartamentos(state){
-        return state.items.filter(dep =>dep.departamento)
+        return state.items
     },
 
     todosDepartamentoCount(state, getters){

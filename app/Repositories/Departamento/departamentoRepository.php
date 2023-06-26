@@ -19,7 +19,8 @@ class DepartamentoRepository
 
     public function getDepartamentos()
     {
-        $departamento = $this->ententy::orderBy('departamento', 'asc')->get();
+        $departamento = $this->ententy->all();
+
             if (asset($departamento)) {
                 return response()->json($departamento);
             } else {
