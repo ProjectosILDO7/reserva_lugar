@@ -79,6 +79,7 @@ Route::post('/filter', [funcionarioController::class, 'filter'])->middleware('ap
 Route::post('/registerFuncionario', [funcionarioController::class, 'store'])->middleware('api');
 Route::get('/getFuncionario/{id}', [funcionarioController::class, 'edit'])->middleware('api');
 Route::put('/updateFuncionario/{id}', [funcionarioController::class, 'update'])->middleware('api');
+Route::put('/updateCliente2/{id}', [funcionarioController::class, 'update2'])->middleware('api');
 Route::get('/apagarFuncionario/{id}', [funcionarioController::class, 'destroy'])->middleware('api');
 Route::put('/inativar/{id}', [funcionarioController::class, 'inativar'])->middleware('api');
 Route::put('/activo/{id}', [funcionarioController::class, 'activo'])->middleware('api');
@@ -89,6 +90,7 @@ Route::get('/getFuncionarioPagamento/{id}', [funcionarioController::class, 'show
 Route::get('/ExportToExcelListaPagamento/{user}', [ExportExcelController::class, 'exportListaPagamento'])->middleware('api');
 
 Route::get('/clientes', [funcionarioController::class, 'getClientes'])->middleware('api');
+Route::get('/getClientePeloAdmin/{id}', [funcionarioController::class, 'getClientePeloAdmin']);
 Route::get('/reservas', [funcionarioController::class, 'getReservas'])->middleware('api');
 Route::get('/minhas_reservas', [funcionarioController::class, 'getMinhas_Reservas'])->middleware('api');
 Route::get('/criar_reserva/{id}', [funcionarioController::class, 'criar_reserva'])->middleware('api');
@@ -105,6 +107,7 @@ Route::get('/notificacoesReed', [notifyMessagesController::class, 'notificacoesR
 Route::get('/mensages', [notifyMessagesController::class, 'allSms'])->middleware('api');
 Route::get('/mensagesReed', [notifyMessagesController::class, 'allSmsReed'])->middleware('api');
 Route::get('/smsLida/{id}', [notifyMessagesController::class, 'smsLida'])->middleware('api');
+Route::get('/notifyInativo/{id}', [notifyMessagesController::class, 'notifyInativo'])->middleware('api');
 
 
 Route::post('/sendEmail', [SendMessageController::class, 'send']);

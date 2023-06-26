@@ -4,7 +4,7 @@ const getters = {
     },
 
     todosNomesNotificacoes(state){
-        return state.items.filter(notify =>notify.data)
+        return state.items
     },
 
     todasNotificacoesCount(state, getters){

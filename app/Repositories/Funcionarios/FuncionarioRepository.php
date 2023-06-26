@@ -188,6 +188,21 @@ class FuncionarioRepository
         }
     }
 
+    public function getClientePeloAdmin($id)
+    {
+        //dd($id);
+        $getCliente = $this->ententy::find($id);
+        if (asset($getCliente)) {
+            return response()->json([
+                'getCliente' => $getCliente
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Cliente não encontrado..!'
+            ], 401);
+        }
+    }
+
     public function inativar($id)
     {
         //dd($id);

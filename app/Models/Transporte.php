@@ -13,6 +13,8 @@ class Transporte extends Model
         'modelo',
         'total_lugares',
         'preco_por_lugar',
+        'procedencia',
+        'destino',
     ];
 
     public function users(){

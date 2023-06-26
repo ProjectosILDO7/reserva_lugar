@@ -13,7 +13,7 @@ class UpdateclienteRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,20 @@ class UpdateclienteRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->id ?? '';
         return [
-            //
+            'name'=>'required|string',
+            'email'=>"required|string|email|unique:users,email,{$id},id",
+            'numBI'=>'required|string',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required'=>'O campo do nome tem de ser preenchido',
+            'email.required'=>'O campo do e-mail tem de ser preenchido',
+            'numBI.required'=>'O nº do documento tem de ser preenchido',
         ];
     }
 }

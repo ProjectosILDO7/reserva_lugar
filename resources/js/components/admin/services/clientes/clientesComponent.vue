@@ -9,8 +9,8 @@
     <div class="row">
       <div class="form-group col-6 text-start mb-2" v-if="todosClientesCount != 0">
         <!-- Export Excel file -->
-        <download-excel class="btn btn-sm btn-outline-success" :data="Clientes" :fields="fields"
-          :json_meta="json_meta" type="xls" worksheet="Meus Clientes" name="Lista de funcionários.xls">
+        <download-excel class="btn btn-sm btn-outline-success" :data="Clientes" :fields="fields" :json_meta="json_meta"
+          type="xls" worksheet="Meus Clientes" name="Lista de Clientes.xls">
           <i class="fa-solid fa-file-excel"></i> Exportar Excel
         </download-excel>
 
@@ -64,8 +64,7 @@
                 <ul class="dropdown-menu">
                   <li>
                     <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                      @click="updateClienteForm(Cliente.id)"><i
-                        class="fa-regular fa-pen-to-square text-success"></i>
+                      @click="updateClienteForm(Cliente.id)"><i class="fa-regular fa-pen-to-square text-success"></i>
                       Alterar</a>
                   </li>
                   <li>
@@ -78,7 +77,7 @@
                       <i class="fa-solid fa-eye"></i> Vêr Detalhes
                     </a>
                   </li>
-                  <li v-if="Cliente.status == 'Inativo'">
+                  <!-- <li v-if="Cliente.status == 'Inativo'">
                     <a class="dropdown-item cursor" @click="activo(Cliente.id)">
                       <i class="fa-solid fa-lock-open text-primary"></i> Activar
                     </a>
@@ -87,7 +86,7 @@
                     <a class="dropdown-item cursor" @click="inativo(Cliente.id)">
                       <i class="fa-solid fa-user-lock text-warning"></i> Inativar
                     </a>
-                  </li>
+                  </li> -->
                   <!-- <li>
                     <router-link class="dropdown-item" :to="{ name:'admin.pagamentos', params:{id:Cliente.id} }">
                       <i class="fa-solid fa-credit-card"></i>
@@ -103,8 +102,7 @@
             <p class="text-secondary h6">
               <span v-show="Cliente.image">
                 <router-link :to="`${url}${Cliente.image}`" target="_blank">
-                  <img :src="`${url}${Cliente.image}`" alt="image"
-                    class="rounded-circle rounded-3 tamanhoUserImage" />
+                  <img :src="`${url}${Cliente.image}`" alt="image" class="rounded-circle rounded-3 tamanhoUserImage" />
                 </router-link>
                 {{ Cliente.name }}</span>
               <span v-show="!Cliente.image"><img :src="url_no_image" alt="Sem_imagem"
@@ -113,13 +111,13 @@
             </p>
           </div>
 
-          <div class="form-group col-xs-2 col-sm-2 col-md-3 col-lg-3">
+          <!-- <div class="form-group col-xs-2 col-sm-2 col-md-3 col-lg-3">
             <label class="text-success">Pertence ao Departamento de:</label>
             <p class="text-secondary h6">
               <i class="fa-solid fa-book"></i>
               {{ Cliente.departamentos.departamento }}
             </p>
-          </div>
+          </div> -->
 
           <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
             <label class="text-success">Nº do Documento</label>
@@ -129,7 +127,7 @@
             </p>
           </div>
 
-          <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
+          <!-- <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
             <label class="text-success">Status</label>
             <p class="text-secondary h6" v-if="Cliente.status == 'Activo'">
               <i class="fa-sharp fa-solid fa-circle text-success"></i>
@@ -139,7 +137,7 @@
               <i class="fa-sharp fa-solid fa-circle text-warning"></i>
               {{ Cliente.status }}
             </p>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -235,73 +233,16 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="staticBackdropLabel">
-              <i class="fa-solid fa-user-tie"></i> 
-              <span v-if="btnSaveVariavel">Cadastre novo funcionário</span>
-              <span v-else>Alterar dados do funcionário</span>
+              <i class="fa-solid fa-user-tie"></i>
+              <span v-if="btnSaveVariavel">Cadastre novo cliente</span>
+              <span v-else>Alterar dados do cliente</span>
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <div class="row">
               <form action="">
-                <!-- Componente de upload de imagem -->
-                <div class="form-group col-12 text-center">
-                  <label for="file-upload" class="text-secondary col-12 cursor">(Opcional) Selecione uma foto</label>
-                  <span class="text-danger small col-12" v-if="erros.image">{{
-                    erros.image[0]
-                  }}</span>
 
-                  <div class="file-upload-section mb-0" v-if="btnSaveVariavel">
-
-                    <label id="preview" for="file-upload">
-                      <img v-if="items.imgPreview" :src="items.imgPreview == null ? url_no_image : items.imgPreview"
-                        class="rounded-start border border-2 cursor mb-0" />
-                      <img v-else :src="url_no_image" class="rounded-start border border-2 cursor mb-0" />
-                    </label>
-
-                    <div class="file-upload">
-                      <input type="file" id="file-upload" class="form-control form-control-sm invisivel"
-                        @change="onFileChange" enctype="multpart/form-data" />
-                    </div>
-
-                    <div v-if="items.imgPreview" class="col-12 d-grid gap-2">
-                      <span class="cursor" @click.prevent="removeImage()">
-                        <i class="fa-solid fa-trash-can h3 text-danger"></i>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <div class="file-upload-section mb-0" v-else>
-                    <label id="preview" for="file-upload" v-show="editImage">
-                      <img v-if="`${url}${items.image}`" :src="`${url}${items.image}`"
-                        class="rounded-start border border-2 cursor mb-0" />
-                    </label>
-
-                    <label id="preview" for="file-upload">
-                      <img v-if="items.imgPreview" :src="items.imgPreview"
-                        class="rounded-start border border-2 cursor mb-0" />
-                    </label>
-                    <!-- `${url}${items.image}`===null ? url_no_image:`${url}${items.image}` -->
-                    <div class="file-upload">
-                      <input type="file" id="file-upload" class="form-control form-control-sm invisivel"
-                        @change="onFileChangeEdit" enctype="multipart/form-data" />
-                    </div>
-                    <div v-if="`${url}${items.image}`" class="col-12 text-center" v-show="editImage">
-                      <span class="cursor" @click.prevent="removeImageEdit()">
-                        <i class="fa-solid fa-trash-can h3 text-danger"></i>
-
-                      </span>
-                    </div>
-
-                    <div v-else class="col-12 mt-2 text-center">
-                      <span class="cursor" @click.prevent="removeImage()">
-                        <i class="fa-solid fa-trash-can h3 text-danger"></i>
-
-                      </span>
-                    </div>
-                  </div>
-                </div>
 
                 <div class="form-group col-12 mb-2">
                   <span class="text-danger small col-12" v-if="erros.name">{{
@@ -331,7 +272,7 @@
                   </div>
                 </div>
 
-                <div class="form-group col-12 mb-2">
+                <!-- <div class="form-group col-12 mb-2">
                   <span class="text-danger small col-12" v-if="erros.departamento_id">{{ erros.departamento_id[0]
                   }}</span>
                   <label for="" class="text-secodary col-12">Associa-lo(a) a um departamento:</label>
@@ -343,7 +284,7 @@
                       {{ departamento.departamento }}
                     </option>
                   </select>
-                </div>
+                </div> -->
 
                 <div class="form-group col-12 mb-2" v-if="btnSaveVariavel">
                   <span class="text-danger small col-12" v-if="erros.email">{{
@@ -353,6 +294,12 @@
                   <input type="email" class="form-control form-control-sm fw-bold" placeholder="Informe o e-amil"
                     v-model="items.email" />
                 </div>
+
+                <input type="password" name="password" class="d-none" required
+                  onkeyup="this.setAttribute('value', this.value);" v-model="items.password">
+
+                <input type="password" name="password_confirme" class="d-none" required
+                  onkeyup="this.setAttribute('value', this.value);" v-model="items.password_confirmation">
               </form>
             </div>
           </div>
@@ -484,24 +431,17 @@
                 </p>
               </div>
             </div>
-            <div class="card mt-2">
-              <div class="card-body">
-                <p class="text-success">Departamento:</p>
-                <p class="text-primary mt-0 fw-bold topoMargin">
-                  {{ departamentoInfo }}
-                </p>
-              </div>
-            </div>
 
             <div class="card mt-2">
               <div class="card-body">
                 <p class="text-success">Transporte de viagem:</p>
                 <p class="text-primary mt-0 fw-bold topoMargin small" v-for="res, index in reserva" :key="index">
-                  {{ res.transportes.transporte }} <span class="text-secondary">- Assento nº:</span> {{ res.transportes.total_lugares }}
+                  {{ res.transportes.transporte }} <span class="text-secondary">- Assento nº:</span> {{
+                    res.transportes.total_lugares }}
                   <span class="text-secondary">- Valor:</span>{{ vueNumberFormat(res.transportes.preco_por_lugar, {
-                                    isInteger: true,
-                                    suffix: ' Kz'
-                                }) }}
+                    isInteger: true,
+                    suffix: ' Kz'
+                  }) }}
                 </p>
               </div>
             </div>
@@ -528,6 +468,7 @@ import topoPageComponent from "../partials/topoPageComponent.vue";
 import Datepicker from "vue3-datepicker"
 import { pt, eo, ru } from 'date-fns/locale'
 import { URL_API } from '../../../../configs/index.js'
+import axios from "axios"
 
 export default {
   name: "Cliente-component",
@@ -538,20 +479,19 @@ export default {
       url: window.url + "storage/image/clientes/",
       url_no_image: window.url + "image/no-Image.jpg",
       editImage: false,
-      meID:'',
+      meID: '',
+      password: '',
+      password_confirmation: '',
       locale: pt,
       btnSaveVariavel: false,
       items: {
-        user_id: "",
-        departamento_id: "",
         numBI: "",
         email: "",
-        image: null,
-        imgPreview: null,
         name: "",
-        picked: new Date(),
+        password: '',
+        password_confirmation: '',
       },
-      reserva:{},
+      reserva: {},
       data: [
         {
           name: "",
@@ -581,8 +521,8 @@ export default {
       info: [],
 
       departamentoInfo: "",
-      categoriaInfo:"",
-      remoneracaoInfo:"",
+      categoriaInfo: "",
+      remoneracaoInfo: "",
       emailInfo: "",
       adminInfo: "",
       senhaReservaInfo: "",
@@ -590,7 +530,7 @@ export default {
 
       fomatoData: "",
       namePage: "Meus clientes",
-      //nameButto: "Novo cliente",
+      nameButto: "Novo cliente",
       pageTopoIcon: "fa-solid fa-users-line",
       loading: false,
 
@@ -599,8 +539,9 @@ export default {
 
   created() {
     this.loadingClientes();
-    this.loadingDepartamentos();
+    //this.loadingDepartamentos();
     //this.loadingReservasSenhas();
+    //this.geradorDeChave()
     this.me()
   },
 
@@ -642,10 +583,11 @@ export default {
   },
 
   methods: {
-    me(){
-           this.$store.dispatch('getMeSemLoading')
-                                .then((resp)=>this.meID=resp.id)
-        },
+
+    me() {
+      this.$store.dispatch('getMeSemLoading')
+        .then((resp) => this.meID = resp.id)
+    },
 
     exportExcel() {
       import('../../../../plugins/Export2Excel').then(excel => {
@@ -717,6 +659,8 @@ export default {
     buscaClienteID() {
       this.cleanForm();
       this.btnSaveVariavel = true;
+      this.items.password = Math.random().toString(36).slice(2)
+      this.items.password_confirmation = this.items.password
     },
     detalhes(id) {
       this.info = [];
@@ -725,10 +669,8 @@ export default {
         .then((response) => {
           console.log(response.data.user1)
           this.info = response.data.user1;
-          this.departamentoInfo = this.info.departamentos.departamento;
           this.emailInfo = this.info.email;
-          
-          this.reserva=response.data.reserva
+          this.reserva = response.data.reserva
         })
         .catch((error) => {
           notify({
@@ -757,17 +699,21 @@ export default {
       //var store = useStore()
       this.$store.dispatch("loadingClientes");
     },
-    loadingDepartamentos() {
-      //var store = useStore()
-      this.$store.dispatch("loadingDepartamentos");
-    },
+    // loadingDepartamentos() {
+    //   //var store = useStore()
+    //   this.$store.dispatch("loadingDepartamentos");
+    // },
 
     // loadingReservasSenhas() {
     //   this.$store.dispatch("loadingReservaSenhaCliente");
     // },
 
     registerCliente() {
-      this.$store.dispatch("createClientes", this.items)
+      axios.post(`${URL_API}/registerUser`, this.items, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
         .then(() => {
           notify({
             title: "Sucesso",
@@ -788,13 +734,15 @@ export default {
           });
         });
     },
+
     updateClienteForm(id) {
       this.btnSaveVariavel = false;
-      this.editImage = true;
       this.cleanForm();
       this.$store
         .dispatch("updateFormCliente", id)
-        .then((response) => { console.log(response.data.getCliente), (this.items = response.data.getCliente) })
+        .then((response) => { 
+          console.log(response), 
+          (this.items = response.data.getFuncionario) })
         .catch((error) => {
           notify({
             title: "Não encotrado",
@@ -804,13 +752,15 @@ export default {
         });
     },
 
+
     updateCliente() {
       this.$store
-        .dispatch("updateCliente", this.items)
+        .dispatch("updateCliente2", this.items)
         .then((response) => {
+          console.log(response)
           notify({
             title: "Sucesso",
-            text: response.data.message,
+            text: 'Cliente actualizado com sucesso',
             type: "success",
           });
           this.loadingClientes();

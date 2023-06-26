@@ -50,6 +50,12 @@ const actions = {
                              .finally(()=>commit('PRELOADING', false))
     },
 
+    updateCliente2({commit}, params){
+        commit('PRELOADING', true)
+        return FuncionariosService.updateCliente2(params)
+                             .finally(()=>commit('PRELOADING', false))
+    },
+
     apagarFuncionario({commit}, params){
         commit('PRELOADING', true)
         return FuncionariosService.apagarFuncionario(params)

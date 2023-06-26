@@ -38,6 +38,15 @@ export default class EstudantesService extends BaseService{
         })
     }
 
+    static async updateCliente2(params){
+        return new Promise((resolve, reject)=>{
+            this.request({auth:true})
+                .put(`/updateCliente2/${params.id}`, params)
+                .then((resp)=>resolve(resp))
+                .catch((erro)=>reject(erro))
+        })
+    }
+
     static async inativo(id){
         return new Promise((resolve, reject)=>{
             this.request({auth:true})

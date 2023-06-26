@@ -20,7 +20,9 @@
                                 <th>Modelo</th>
                                 <th>Cadeira - nº</th>
                                 <th>Data da solicitação</th>
+                                <th>Destino</th>
                                 <th>Bilheteria</th>
+                                <th>Comprovativo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,9 +31,15 @@
                                     <td>{{ item.transportes.modelo }}</td>
                                     <td>{{ item.transportes.total_lugares }}</td>
                                     <td>{{ item.data }}</td>
+                                    <td><strong class="text-danger">{{ item.transportes.destino }}</strong></td>
                                     <td>
                                         <router-link class="btn btn-sm btn-success" to="#">
                                             <i class="fa-solid fa-ticket"></i> Comprar bilhete
+                                        </router-link>
+                                    </td>
+                                    <td>
+                                        <router-link class="btn btn-sm btn-success" to="#">
+                                            <i class="fa-solid fa-file-word"></i> Gerar comprovativo
                                         </router-link>
                                     </td>
                                 </tr>

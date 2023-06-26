@@ -57,7 +57,7 @@
 
                     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
                         <label class="text-success">Transporte</label>
-                        <p class="text-secondary h6"><i class="fa-solid fa-user-tie"></i> {{
+                        <p class="text-secondary h6"><i class="fa-solid fa-train"></i> {{
                             transporte.transporte
                         }}
                         </p>
@@ -167,10 +167,10 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">
                             <span class="" v-if="btnSaveVariavel">
-                                <i class="fa-solid fa-graduation-cap"></i> Cadastre novo transporte
+                                <i class="fa-solid fa-train"></i> Cadastre novo transporte
                             </span>
                             <span class="" v-else>
-                                <i class="fa-solid fa-graduation-cap"></i> Alter informações do transporte
+                                <i class="fa-solid fa-train"></i> Alter informações do transporte
                             </span>
 
                         </h5>
@@ -212,6 +212,21 @@
                                     <VueNumberFormat class="form-control form-control-sm" v-model:value="items.preco_por_lugar"
                                         :options="{ precision: 2, prefix: '', suffix: ' ', isInteger: true, acceptNegative: false, masked: false }">
                                     </VueNumberFormat>
+                                </div>
+<hr>
+                                <div class="form-group col-12 mb-2">
+                                    <span class="text-danger small col-12" v-if="erros.procedencia">{{ erros.procedencia[0]
+                                    }}</span>
+                                    <label for="" class="text-secodary col-12">Procedencia</label>
+                                    <input type="text" class="form-control form-control-sm"
+                                        placeholder="Total de lugar" v-model="items.procedencia">
+                                </div>
+                                <div class="form-group col-12 mb-2">
+                                    <span class="text-danger small col-12" v-if="erros.destino">{{ erros.destino[0]
+                                    }}</span>
+                                    <label for="" class="text-secodary col-12">Destino</label>
+                                    <input type="text" class="form-control form-control-sm"
+                                        placeholder="Total de lugar" v-model="items.destino">
                                 </div>
 
                             </form>
@@ -309,7 +324,7 @@ export default {
         return {
             urlExport: URL_API + '/ExportToExcelTransporte/',
             meID:'',
-            items: { transporte:'', modelo:'', total_lugares:'', preco_por_lugar:'' },
+            items: { transporte:'', modelo:'', total_lugares:'', preco_por_lugar:'', procedencia:'', destino:'' },
             erros: [],
             deleteTransporteId: '',
             filter: '',

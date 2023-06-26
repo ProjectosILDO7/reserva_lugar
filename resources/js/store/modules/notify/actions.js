@@ -13,7 +13,15 @@ const actions = {
     loadingNotificacoesReed({commit}){
         commit('PRELOADING', true)
         return notificacaoService.getNotificacoesReed()
-                        .then((response)=>response)
+                        .then((response)=>commit('ADD_ALL_NOTIFY', response.data))
+                        .catch((error)=>console.log(error))
+                        .finally(()=>commit('PRELOADING', false))
+    },
+
+    notifyInativo({commit}, params){
+        commit('PRELOADING', true)
+        return notificacaoService.notifyInativo(params)
+                        .then((response)=>commit('ADD_ALL_NOTIFY', response.data))
                         .catch((error)=>console.log(error))
                         .finally(()=>commit('PRELOADING', false))
     },

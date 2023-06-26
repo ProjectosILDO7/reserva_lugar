@@ -201,7 +201,7 @@ export default {
                         {
                             href: { name: 'admin.transporte' },
                             title: 'Transportes',//<i class="fa-solid fa-address-book"></i>
-                            icon: 'fa-solid fa-user-tie'
+                            icon: 'fa-solid fa-train'
                         },
 
                     ]

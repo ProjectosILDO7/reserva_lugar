@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFuncionarioRequest;
+use App\Http\Requests\UpdateclienteRequest;
 use App\Http\Requests\UpdateFuncionarioRequest;
 use App\Repositories\Funcionarios\FuncionarioRepository;
 use Illuminate\Http\Request;
@@ -26,6 +27,12 @@ class funcionarioController extends Controller
     {
      //
         return $this->entety->getClientes();
+    }
+
+    public function getClientePeloAdmin($id)
+    {
+     //
+        return $this->entety->getClientePeloAdmin($id);
     }
 
     public function getReservas()
@@ -72,6 +79,12 @@ class funcionarioController extends Controller
 
 
     public function update(UpdateFuncionarioRequest $request, $id)
+    {
+        //
+       return $this->entety->updateFuncionario($request, $id);
+    }
+
+    public function update2(UpdateclienteRequest $request, $id)
     {
         //
        return $this->entety->updateFuncionario($request, $id);

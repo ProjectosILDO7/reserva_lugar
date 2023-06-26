@@ -37,7 +37,9 @@ class transporteRepository
             'transporte' => $data['transporte'],
             'modelo' => $data['modelo'],
             'total_lugares' => $data['total_lugares'],
-            'preco_por_lugar' => $data['preco_por_lugar']
+            'preco_por_lugar' => $data['preco_por_lugar'],
+            'procedencia' => $data['procedencia'],
+            'destino' => $data['destino'],
         ]);
 
         if (asset($saveTransporte)) {

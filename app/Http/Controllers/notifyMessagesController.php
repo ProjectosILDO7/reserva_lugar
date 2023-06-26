@@ -24,12 +24,12 @@ class notifyMessagesController extends Controller
     }
 
     public function notificacoes(){
-        $total = $this->reserva->where('user_id', "!=", $this->user_id)->orderBy('data','desc')->get();
+        $total = $this->reserva->where('user_id', "!=", $this->user_id)->where('status', "!=", 0)->orderBy('data','desc')->get();
         return response()->json($total);
     }
 
     public function notificacoesReed(){
-        $notify = $this->reserva->with('transportes', 'clientes')->orderBy('data','desc')->where('user_id', "!=", $this->user_id)->get();
+        $notify = $this->reserva->with('transportes', 'clientes')->orderBy('data','desc')->where('user_id', "!=", $this->user_id)->where('status', "!=", 0)->get();
         return response()->json($notify);
     }
 
@@ -48,6 +48,23 @@ class notifyMessagesController extends Controller
         if(isset($smsDelete)){
             $this->smsReed = $this->messages->where('email', "!=", $this->email)->orderBy('created_at','desc')->get();
             return response()->json($this->smsReed);
+        }else{
+            return response()->json([
+                'erro'=>'Erro técnico'
+            ],402);
+        }
+
+    }
+
+    public function notifyInativo($id){
+
+        $statusUpdateReserva = $this->reserva->find($id);
+        $statusUpdateReserva->status=0;
+        $statusUpdateReserva->update();
+        
+        if(isset($statusUpdateReserva)){
+            $notify = $this->reserva->with('transportes', 'clientes')->orderBy('data','desc')->where('user_id', "!=", $this->user_id)->where('status', "!=", 0)->get();
+        return response()->json($notify);
         }else{
             return response()->json([
                 'erro'=>'Erro técnico'

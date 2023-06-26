@@ -23,7 +23,9 @@ class UpdateTransporteRequest extends FormRequest
             'transporte'=>"required|unique:transportes,transporte,{$id},id",
             'modelo'=>'required',
             'total_lugares'=>'required',
-            'preco_por_lugar'=>'required'
+            'preco_por_lugar'=>'required',
+            'procedencia'=>'required',
+            'destino'=>'required',
         ];
     }
 
@@ -35,6 +37,8 @@ class UpdateTransporteRequest extends FormRequest
             'modelo.required'=>'Preenchimento obrigatório',
             'total_lugares.required'=>'Preenchimento obrigatório',
             'preco_por_lugar.required'=>'Preenchimento obrigatório',
+            'procedencia.required'=>'Preenchimento obrigatório',
+            'destino.required'=>'Preenchimento obrigatório',
         ];
     }       
 

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('modelo');
             $table->string('total_lugares');
             $table->string('preco_por_lugar');
+            $table->string('procedencia');
+            $table->string('destino');
             $table->timestamps();
 
         });

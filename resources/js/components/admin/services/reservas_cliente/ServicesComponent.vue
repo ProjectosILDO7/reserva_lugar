@@ -40,32 +40,46 @@
                         </span>
                     </div> -->
 
-                    <div class="form-group col-xs-12 col-sm-12 col-md-1 col-lg-1">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
                         <p class="text-secondary h6">
                             <img :src="url_no_image" alt="Sem_imagem" class="rounded-circle rounded-3 tamanhoUserImage" />
                         </p>
                     </div>
 
-                    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
                         <label class="text-success">Transporte</label>
-                        <p class="text-secondary h6"><i class="fa-solid fa-user-tie"></i> {{
+                        <p class="text-secondary h6"><i class="fa-solid fa-train"></i> {{
                             transporte.transporte
                         }}
                         </p>
                     </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                        <label class="text-success">Routar de procedência</label>
+                        <p class="text-secondary h6"><i class="fa-solid fa-train"></i> {{
+                            transporte.procedencia
+                        }}
+                        </p>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                        <label class="text-success">Routa de destino</label>
+                        <p class="text-secondary h6"><i class="fa-solid fa-train"></i> {{
+                            transporte.destino
+                        }}
+                        </p>
+                    </div>
 
-                    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
                         <label class="text-success">Cobrança por lugar</label>
                         <p class="text-secondary h6"><i class="fa-solid fa-cart-shopping"></i>
                             {{ vueNumberFormat(transporte.preco_por_lugar, { isInteger: true }) }}
                         </p>
                     </div>
 
-                    <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                        <label class="text-success">Solicitar reserva</label>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-1 col-lg-1">
+                        <label class="text-success">Reservar</label>
                         <p class="text-secondary h6">
                             <button class="btn btn-sm btn-success" @click="criar_reserva(transporte.id)">
-                                <i class="fa fa-send"></i> Efectuar solicitação
+                                <i class="fa fa-send"></i>Solicitar
                             </button>
                         </p>
                     </div>

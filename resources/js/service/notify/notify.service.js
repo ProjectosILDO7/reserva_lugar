@@ -29,4 +29,12 @@ export default class notifyService extends BaseService{
                 .catch((erro)=>reject(erro))
         })
     }
+    static async notifyInativo(params){
+        return new Promise((resolve, reject)=>{
+            this.request({auth:true})
+                .get(`/notifyInativo/${params}`)
+                .then((resp)=>resolve(resp))
+                .catch((erro)=>reject(erro))
+        })
+    }
 }
