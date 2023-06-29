@@ -1,47 +1,39 @@
 import BaseService from "../base.service"
 
-export default class notifyService extends BaseService{
+export default class messagesClienteService extends BaseService{
 
-    static async getNotificacoes(){
+    static async getMensagensCliente(){
         return new Promise((resolve, reject)=>{
             this.request({auth:true})
-                .get('/notificacoes')
+                .get('/mensagesCliente')
                 .then((resp)=>resolve(resp))
                 .catch((erro)=>reject(erro))
         })
     
     }
 
-    static async getNotificacoesReed(){
+    static async getMensagensReedCliente(){
         return new Promise((resolve, reject)=>{
             this.request({auth:true})
-                .get('/notificacoesReed')
+                .get('/mensagesReedCliente')
                 .then((resp)=>resolve(resp))
                 .catch((erro)=>reject(erro))
         })
     
     }
-    static async getNotificacoesUser(params){
+    static async getMensagesUserCliente(params){
         return new Promise((resolve, reject)=>{
             this.request({auth:true})
-                .get(`/notify/${params}`)
+                .get(`/mensagesCliente/${params}`)
                 .then((resp)=>resolve(resp))
                 .catch((erro)=>reject(erro))
         })
     }
-    static async notifyInativo(params){
+    
+    static async lidaCliente(params){
         return new Promise((resolve, reject)=>{
             this.request({auth:true})
-                .get(`/notifyInativo/${params}`)
-                .then((resp)=>resolve(resp))
-                .catch((erro)=>reject(erro))
-        })
-    }
-
-    static async sendNotificationForClient(params){
-        return new Promise((resolve, reject)=>{
-            this.request({auth:true})
-                .post(`/sendNotificationForClient`, params)
+                .get(`/smsLidaCliente/${params}`)
                 .then((resp)=>resolve(resp))
                 .catch((erro)=>reject(erro))
         })

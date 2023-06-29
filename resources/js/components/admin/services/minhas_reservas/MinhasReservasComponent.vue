@@ -38,9 +38,9 @@
                                         </router-link>
                                     </td>
                                     <td>
-                                        <router-link class="btn btn-sm btn-success" to="#">
+                                        <a class="btn btn-sm btn-success" :href="`${urlExport}${item.id}`">
                                             <i class="fa-solid fa-file-word"></i> Gerar comprovativo
-                                        </router-link>
+                                        </a>
                                     </td>
                                 </tr>
                         </tbody>
@@ -56,10 +56,12 @@
 </template>
 
 <script>
+import { URL_API } from '../../../../configs'
     export default{
         data(){
             return {
                 items:[],
+                urlExport: URL_API + '/ExportToWordComprovativo/',
             }
         },
 

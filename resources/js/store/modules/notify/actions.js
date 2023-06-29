@@ -26,6 +26,11 @@ const actions = {
                         .finally(()=>commit('PRELOADING', false))
     },
 
+    sendNotificationForClient({commit}, params){
+        commit('PRELOADING', true)
+        return notificacaoService.sendNotificationForClient(params)
+                                .finally(()=>commit('PRELOADING', false))
+    },
 }
 
 export default actions

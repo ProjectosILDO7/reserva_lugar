@@ -2,7 +2,7 @@
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-dark shadow">
             <div class="container">
-
+                
                 <button class="navbar-toggler btn-sm" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -21,8 +21,8 @@
                             <div v-else>
                                 <router-link class="nav-link active text-white" aria-current="page"
                                     :to="{ name: 'admin.dashboard' }">
-                                    <i class="fa-solid fa-gauge-high"></i>
-                                    Controle
+                                    <i class="fa fa-chart-line"></i>
+                                    Controle / Relatório
                                 </router-link>
                             </div>
                         </li>
@@ -53,7 +53,7 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0">
 
-                        <li class="nav-item">
+                        <li class="nav-item" v-if="me.acesso=='RF'  || me.acesso=='super_Admin_Cuema'">
                             <router-link router-link :to="{ name: 'admin.notify' }" class="nav-link text-white"
                                 title="Reservas">
                                 <i class="fa-solid fa-bell"></i><sup><span
@@ -61,12 +61,32 @@
                                         }}</span></sup>
                             </router-link>
                         </li>
-                        <li class="nav-item">
+
+                        <!-- Notificações Clientes -->
+                        <li class="nav-item" v-else>
+                            <router-link router-link :to="{ name: 'admin.notify' }" class="nav-link text-white"
+                                title="Reservas">
+                                <i class="fa-solid fa-bell"></i><sup><span
+                                        class="rounded-pill py-1 px-1 bg-success text-white small" v-if="all_notifyCLientesCount!=0">{{ all_notifyCLientesCount
+                                        }}</span></sup>
+                            </router-link>
+                        </li>
+
+
+                        <li class="nav-item" v-if="me.acesso=='RF'  || me.acesso=='super_Admin_Cuema'">
                             <router-link class="nav-link text-white" :to="{ name: 'admin.message' }" title="Mensagens">
                                 <i class="fa-solid fa-envelope"></i><sup><span
                                         class="rounded-pill py-1 px-1 bg-success text-white small" v-if="all_messages!=0">{{ all_messages }}</span></sup>
                             </router-link>
                         </li>
+
+                    <!-- Mensagem Clientes -->
+                        <!-- <li class="nav-item" v-else>
+                            <router-link class="nav-link text-white" to="#" title="Mensagens">
+                                <i class="fa-solid fa-envelope"></i><sup><span
+                                        class="rounded-pill py-1 px-1 bg-success text-white small" v-if="all_messagesClientes!=0">{{ all_messagesClientes }}</span></sup>
+                            </router-link>
+                        </li> -->
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
@@ -126,9 +146,13 @@
                         </li> -->
                     </ul>
                 </div>
+
+                
             </div>
+
         </nav>
         <router-view />
+
     </div>
 </template>
 <script>
@@ -145,8 +169,6 @@ export default {
             store: useStore(),
             url: window.url + "storage/image/funcionarios/",
             url_no_image: window.url + "image/no-Image.jpg",
-            totalNotify: '',
-            totalMensages: '',
         }
     },
 
@@ -154,6 +176,7 @@ export default {
         //this.me()
         this.notificacoes();
         this.mensagens();
+        this.notificacoesCliente();
     },
     methods: {
         logout() {
@@ -166,19 +189,14 @@ export default {
 
         notificacoes() {
             this.$store.dispatch('loadingNotificacoes')
-                // .then((response) => {
-                //     this.totalNotify = response.data
-                // })
-                // .catch((erro) => console.log(erro))
         },
 
         mensagens() {
             this.$store.dispatch('loadingMensagens')
-                // .then((response) => {
-                //     console.log(response.data)
-                //     this.totalMensages = response.data
-                // })
-                // .catch((erro) => console.log(erro))
+        },
+
+        notificacoesCliente() {
+            this.$store.dispatch('loadingNotificacoesCliente')
         },
     },
 
@@ -194,6 +212,24 @@ export default {
 
         all_messages(){
            return this.$store.getters.todasMensagensCount
+        },
+
+        // Clientes
+
+        all_notifyCLientes(){
+            const c= this.$store.getters.todosNomesNotificacoesCliente    
+            console.log(c);
+            return c
+        },
+
+        all_notifyCLientesCount(){
+            const c= this.$store.getters.todasNotificacoesClienteCount    
+            console.log(c);
+            return c
+        },
+
+        all_messagesCLientes(){
+           return this.$store.getters.todasMensagensClienteCount
         }
     },
 }

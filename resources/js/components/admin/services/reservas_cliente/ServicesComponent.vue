@@ -225,7 +225,7 @@ export default {
 
     data() {
         return {
-            url_no_image: window.url + "image/trein.jpg",
+            url_no_image: window.url + "image/trein4.jpg",
             items: { transporte: '', modelo: '', total_lugares: '', preco_por_lugar: '' },
             search: '',
             data: [],

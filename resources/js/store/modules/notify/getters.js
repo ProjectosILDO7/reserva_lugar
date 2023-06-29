@@ -11,7 +11,6 @@ const getters = {
         var total= getters.todosNomesNotificacoes.length
         return total
     },
-
 }
 
 export default getters

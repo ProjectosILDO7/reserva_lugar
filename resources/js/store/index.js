@@ -7,7 +7,9 @@ import funcionarios from './modules/funcionarios'
 import contacto_empresa from './modules/contacto_empresa'
 import clientes from './modules/clientes'
 import notificacoes from './modules/notify'
+import notificacoesCliente from './modules/notifyCliente'
 import mensagens from './modules/messages'
+import mensagensCliente from './modules/messagesCliente'
 import reservas from './modules/reservas'
 import minhas_reservas from './modules/minhas_reservas'
 import transporte from './modules/transporte'
@@ -23,7 +25,9 @@ export default createStore({
         funcionarios,
         clientes,
         notificacoes,
+        notificacoesCliente,
         contacto_empresa,
+        mensagensCliente,
         mensagens,
         reservas,
         minhas_reservas,

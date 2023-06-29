@@ -169,16 +169,6 @@ export default {
                             title: 'Perfil',
                             icon: 'fa-regular fa-user'
                         },
-                        {
-                            href: { name: 'admin.notify' },
-                            title: 'Notificação',
-                            icon: 'fa-solid fa-users-gear'
-                        },
-                        {
-                            href: { name: 'admin.message' },
-                            title: 'Mensagem',
-                            icon: 'fa-solid fa-users-gear'
-                        },
                     ]
                 },
                 {
@@ -206,11 +196,6 @@ export default {
 
                     ]
                 },
-                {
-                    href: "#",
-                    title: 'Relatório',
-                    icon: 'fa fa-chart-line'
-                }
             ],
         }
     },

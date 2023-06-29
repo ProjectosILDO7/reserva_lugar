@@ -116,7 +116,7 @@ export default {
         }
     },
     setup(props) {
-        const email = ref("")
+        const email = new URL(location.href).searchParams.get('email')
         const password = ref("")
         const loading = ref(false)
 

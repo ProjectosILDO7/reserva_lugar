@@ -12,16 +12,18 @@ class ResetPasswordNotification extends Notification
     use Queueable;
 
     protected $token;
+    public $email;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(string $token)
+    public function __construct(string $token, $email)
     {
         //
         $this->token=$token;
+        $this->email=$email;
     }
 
     /**
@@ -43,7 +45,7 @@ class ResetPasswordNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = "http://propy-x.test/api/resetPassword/{$this->token}";
+        $url = "http://reserva.test/api/resetPassword/{$this->token}"."?email={$this->email}";
 
         return (new MailMessage)
                     ->subject('Nova senha')

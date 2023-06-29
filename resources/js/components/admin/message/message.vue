@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-4">
         <span class="text-secondary h3">
-            <i class="fa-solid fa-message"></i> <strong>Mensagens</strong>
+            <i class="fa-solid fa-message"></i> <strong>Mensagens externas</strong>
         </span>
 
         <hr>

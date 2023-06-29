@@ -9,8 +9,10 @@ use App\Http\Controllers\contacto_empresaOflineController;
 use App\Http\Controllers\ContactoEmpresaController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\ExportExcelController;
+use App\Http\Controllers\ExportToWordComprovativoController;
 use App\Http\Controllers\funcionarioController;
 use App\Http\Controllers\graficosController;
+use App\Http\Controllers\NotifyClienteController;
 use App\Http\Controllers\notifyMessagesController;
 use App\Http\Controllers\reserva_senha_control;
 use App\Http\Controllers\SendMessageController;
@@ -98,16 +100,23 @@ Route::get('/criar_reserva/{id}', [funcionarioController::class, 'criar_reserva'
 
 //Pagamentos
 Route::post('/pag_mensalidade', [pagamentosController::class, 'mensalidade'])->middleware('api');
-Route::get('/ExportToWordComprovativo/{id}', [mensalidadeController::class, 'exportWord'])->middleware('api');
+Route::get('/ExportToWordComprovativo/{id}', [ExportToWordComprovativoController::class, 'exportWord'])->middleware('api');
 
 Route::get('/getGraficoBarra', [graficosController::class, 'graficoDeBarra'])->middleware('api');
 Route::get('/notify/{id}', [notifyMessagesController::class, 'notify'])->middleware('api');
 Route::get('/notificacoes', [notifyMessagesController::class, 'notificacoes'])->middleware('api');
+
 Route::get('/notificacoesReed', [notifyMessagesController::class, 'notificacoesReed'])->middleware('api');
 Route::get('/mensages', [notifyMessagesController::class, 'allSms'])->middleware('api');
 Route::get('/mensagesReed', [notifyMessagesController::class, 'allSmsReed'])->middleware('api');
 Route::get('/smsLida/{id}', [notifyMessagesController::class, 'smsLida'])->middleware('api');
 Route::get('/notifyInativo/{id}', [notifyMessagesController::class, 'notifyInativo'])->middleware('api');
+
+Route::get('/notifyCliente/{id}', [NotifyClienteController::class, 'notifyCliente'])->middleware('api');
+Route::get('/notificacoesCliente', [NotifyClienteController::class, 'notificacoesCliente'])->middleware('api');
+Route::get('/notificacoesReedCliente', [NotifyClienteController::class, 'notificacoesReedCliente'])->middleware('api');
+Route::post('/sendNotificationForClient', [NotifyClienteController::class, 'sendNotificationForClient'])->middleware('api');
+Route::get('/notifyInativoCliente/{id}', [NotifyClienteController::class, 'notifyInativoCliente'])->middleware('api');
 
 
 Route::post('/sendEmail', [SendMessageController::class, 'send']);
