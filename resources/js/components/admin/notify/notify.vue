@@ -126,6 +126,7 @@ export default {
                 "Nº do documento": "clientes.numBI",
                 "Transporte solicitado": "transportes.transporte",
                 "Nº do assento": "transportes.total_lugares",
+                "tipo de transporte": "transportes.tipo_transporte",
                 "Origem": "transportes.procedencia",
                 "destino": "transportes.destino",
             },
