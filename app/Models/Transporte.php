@@ -15,9 +15,14 @@ class Transporte extends Model
         'preco_por_lugar',
         'procedencia',
         'destino',
+        'tipo_transporte',
     ];
 
     public function users(){
         return $this->belongosTo(User::class);
+    }
+
+    public function reservas(){
+        return $this->hasMany(reserva::class);
     }
 }

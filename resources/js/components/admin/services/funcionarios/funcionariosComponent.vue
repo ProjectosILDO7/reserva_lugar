@@ -235,7 +235,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="staticBackdropLabel">
-              <i class="fa-solid fa-user-tie"></i> 
+              <i class="fa-solid fa-user-tie"></i>
               <span v-if="btnSaveVariavel">Cadastre novo funcionário</span>
               <span v-else>Alterar dados do funcionário</span>
             </h5>
@@ -528,7 +528,7 @@ export default {
       url: window.url + "storage/image/funcionarios/",
       url_no_image: window.url + "image/no-Image.jpg",
       editImage: false,
-      meID:'',
+      meID: '',
       locale: pt,
       btnSaveVariavel: false,
       items: {
@@ -570,8 +570,8 @@ export default {
       info: [],
 
       departamentoInfo: "",
-      categoriaInfo:"",
-      remoneracaoInfo:"",
+      categoriaInfo: "",
+      remoneracaoInfo: "",
       emailInfo: "",
       adminInfo: "",
       senhaReservaInfo: "",
@@ -631,10 +631,10 @@ export default {
   },
 
   methods: {
-    me(){
-           this.$store.dispatch('getMeSemLoading')
-                                .then((resp)=>this.meID=resp.id)
-        },
+    me() {
+      this.$store.dispatch('getMeSemLoading')
+        .then((resp) => this.meID = resp.id)
+    },
 
     exportExcel() {
       import('../../../../plugins/Export2Excel').then(excel => {
@@ -821,36 +821,10 @@ export default {
 
     inativo(id) {
       this.$store.dispatch('inativo', id)
-        .then((response) => {
-          notify({
-            title: 'Sucesso',
-            text: response.data.message,
-            type: 'success'
-          })
-          this.loadingFuncionarios();
-        })
-        .catch((erro) => notify({
-          title: 'Erro',
-          text: 'Erro ao Inactivar o Funcionário',
-          type: 'warn'
-        }))
     },
 
     activo(id) {
       this.$store.dispatch('activo', id)
-        .then((response) => {
-          notify({
-            title: 'Sucesso',
-            text: response.data.message,
-            type: 'success'
-          })
-          this.loadingFuncionarios();
-        })
-        .catch((erro) => notify({
-          title: 'Erro',
-          text: 'Erro ao Activar o Funcionário',
-          type: 'warn'
-        }))
     },
 
     apagarFuncionario(id) {

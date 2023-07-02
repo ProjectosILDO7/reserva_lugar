@@ -40,31 +40,43 @@
                         </span>
                     </div> -->
 
-                    <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-1 col-lg-1">
                         <p class="text-secondary h6">
                             <img :src="url_no_image" alt="Sem_imagem" class="rounded-circle rounded-3 tamanhoUserImage" />
                         </p>
                     </div>
 
-                    <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
                         <label class="text-success">Transporte</label>
                         <p class="text-secondary h6"><i class="fa-solid fa-train"></i> {{
                             transporte.transporte
                         }}
                         </p>
                     </div>
-                    <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
-                        <label class="text-success">Routar de procedência</label>
-                        <p class="text-secondary h6"><i class="fa-solid fa-train"></i> {{
-                            transporte.procedencia
+                    <div class="form-group col-xs-12 col-sm-12 col-md-1 col-lg-1">
+                        <label class="text-success">Modelo</label>
+                        <p class="text-secondary h6"><i class="fa-solid fa-clipboard-list"></i> {{
+                            transporte.modelo
+                        }}
+                        </p>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-1 col-lg-1">
+                        <label class="text-success">Assento</label>
+                        <p class="text-secondary h6"><i class="fa-solid fa-wheelchair"></i> {{
+                            transporte.total_lugares-1
                         }}
                         </p>
                     </div>
                     <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
                         <label class="text-success">Routa de destino</label>
-                        <p class="text-secondary h6"><i class="fa-solid fa-train"></i> {{
-                            transporte.destino
-                        }}
+                        <p class="text-secondary h6"><i class="fa-solid fa-signs-post"></i> 
+                        {{ transporte.destino }}
+                        </p>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                        <label class="text-success">Transporte de:</label>
+                        <p class="text-secondary h6"><i class="fa-solid fa-train-tram"></i> 
+                        {{ transporte.tipo_transporte }}
                         </p>
                     </div>
 

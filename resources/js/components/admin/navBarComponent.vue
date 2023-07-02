@@ -167,7 +167,7 @@ export default {
         return {
             loading: false,
             store: useStore(),
-            url: window.url + "storage/image/funcionarios/",
+            url: window.url + "storage/image/users/",
             url_no_image: window.url + "image/no-Image.jpg",
         }
     },

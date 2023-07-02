@@ -2,7 +2,7 @@
     <div class="container mt-4">
 
         <topo-page-component :namePage="namePage" :nameButton="nameButto" :pageTopoIcon="pageTopoIcon"
-            @buscar-curso-id="novoTransporte"/>
+            @buscar-curso-id="novoTransporte" />
         <br>
 
         <div class="row">
@@ -37,7 +37,7 @@
             <div class="card-body">
                 <div class="row">
 
-                    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 d-flex justify-content-start">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-1 col-lg-1 d-flex justify-content-start">
                         <span class="text-secondary">
                             <div class="dropdown">
                                 <button class="btn btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -55,18 +55,46 @@
                         </span>
                     </div>
 
-                    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
                         <label class="text-success">Transporte</label>
                         <p class="text-secondary h6"><i class="fa-solid fa-train"></i> {{
                             transporte.transporte
                         }}
                         </p>
                     </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-1 col-lg-1">
+                        <label class="text-success">Modelo</label>
+                        <p class="text-secondary h6"><i class="fa-solid fa-train"></i> {{
+                            transporte.modelo
+                        }}
+                        </p>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                        <label class="text-success">Tot. lugar restantes</label>
+                        <p class="text-secondary h6"><i class="fa-solid fa-train"></i> {{
+                            transporte.total_lugares
+                        }}
+                        </p>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                        <label class="text-success">Tipo de transporte</label>
+                        <p class="text-secondary h6"><i class="fa-solid fa-train"></i> {{
+                            transporte.tipo_transporte
+                        }}
+                        </p>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                        <label class="text-success">Destino</label>
+                        <p class="text-secondary h6"><i class="fa-solid fa-train"></i> {{
+                            transporte.destino
+                        }}
+                        </p>
+                    </div>
 
-                    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-2 col-lg-2">
                         <label class="text-success">Cobrança por lugar</label>
                         <p class="text-secondary h6"><i class="fa-solid fa-cart-shopping"></i>
-                             {{ vueNumberFormat(transporte.preco_por_lugar, {isInteger:true})}}
+                            {{ vueNumberFormat(transporte.preco_por_lugar, { isInteger: true }) }}
                         </p>
                     </div>
 
@@ -197,36 +225,48 @@
                                 </div>
 
                                 <div class="form-group col-12 mb-2">
-                                    <span class="text-danger small col-12" v-if="erros.total_lugares">{{ erros.total_lugares[0]
+                                    <span class="text-danger small col-12" v-if="erros.total_lugares">{{
+                                        erros.total_lugares[0]
                                     }}</span>
                                     <label for="" class="text-secodary col-12">Total de lugar</label>
-                                    <input type="text" class="form-control form-control-sm"
-                                        placeholder="Total de lugar" v-model="items.total_lugares">
+                                    <input type="text" class="form-control form-control-sm" placeholder="Total de lugar"
+                                        v-model="items.total_lugares">
                                 </div>
 
                                 <div class="form-group col-12 mb-2">
-                                    <span class="text-danger small col-12" v-if="erros.preco_por_lugar">{{ erros.preco_por_lugar[0]
+                                    <span class="text-danger small col-12" v-if="erros.preco_por_lugar">{{
+                                        erros.preco_por_lugar[0]
                                     }}</span>
                                     <label for="" class="text-secodary col-12">Cobrança por lugar</label>
 
-                                    <VueNumberFormat class="form-control form-control-sm" v-model:value="items.preco_por_lugar"
+                                    <VueNumberFormat class="form-control form-control-sm"
+                                        v-model:value="items.preco_por_lugar"
                                         :options="{ precision: 2, prefix: '', suffix: ' ', isInteger: true, acceptNegative: false, masked: false }">
                                     </VueNumberFormat>
                                 </div>
-<hr>
+                                <hr>
                                 <div class="form-group col-12 mb-2">
                                     <span class="text-danger small col-12" v-if="erros.procedencia">{{ erros.procedencia[0]
                                     }}</span>
                                     <label for="" class="text-secodary col-12">Procedencia</label>
-                                    <input type="text" class="form-control form-control-sm"
-                                        placeholder="Total de lugar" v-model="items.procedencia">
+                                    <input type="text" class="form-control form-control-sm" placeholder="Total de lugar"
+                                        v-model="items.procedencia">
                                 </div>
                                 <div class="form-group col-12 mb-2">
                                     <span class="text-danger small col-12" v-if="erros.destino">{{ erros.destino[0]
                                     }}</span>
                                     <label for="" class="text-secodary col-12">Destino</label>
-                                    <input type="text" class="form-control form-control-sm"
-                                        placeholder="Total de lugar" v-model="items.destino">
+                                    <input type="text" class="form-control form-control-sm" placeholder="Total de lugar"
+                                        v-model="items.destino">
+                                </div>
+
+                                <div class="form-group col-12 mb-2">
+                                    <label for="" class="text-secodary col-12">Tipo de transporte</label>
+                                    <input class="form-check-input ml-2" type="radio" id="passageiro" value="passageiro" v-model="items.tipo_transporte" />
+                                    <label class="form-check-label ml-1" for="passageiro"> Transporte para passageiro</label>
+
+                                    <input class="form-check-input ml-2" type="radio" id="carga" value="carga" v-model="items.tipo_transporte" />
+                                    <label class="form-check-label ml-1" for="carga">Transporte para carga</label>
                                 </div>
 
                             </form>
@@ -323,8 +363,16 @@ export default {
     data() {
         return {
             urlExport: URL_API + '/ExportToExcelTransporte/',
-            meID:'',
-            items: { transporte:'', modelo:'', total_lugares:'', preco_por_lugar:'', procedencia:'', destino:'' },
+            meID: '',
+            items: {
+                transporte: '',
+                modelo: '',
+                total_lugares: '',
+                preco_por_lugar: '',
+                procedencia: '',
+                destino: '',
+                tipo_transporte:''
+            },
             erros: [],
             deleteTransporteId: '',
             filter: '',
@@ -347,7 +395,7 @@ export default {
             return this.$store.getters.todosTransportes(this.filter)
         },
 
-        totalDeTransportes(){
+        totalDeTransportes() {
             return this.$store.getters.todosTransporteCount
         },
 
@@ -370,9 +418,9 @@ export default {
     },
 
     methods: {
-        me(){
-           this.$store.dispatch('getMeSemLoading')
-                                .then((resp)=>this.meID=resp.id)
+        me() {
+            this.$store.dispatch('getMeSemLoading')
+                .then((resp) => this.meID = resp.id)
         },
 
         novoTransporte() {
@@ -397,8 +445,8 @@ export default {
         },
 
         cleanForm() {
-            this.items = { descricao: '', cobranca:'' },
-            this.erros = []
+            this.items = { descricao: '', cobranca: '' },
+                this.erros = []
         },
 
         loadingTransportes() {

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('preco_por_lugar');
             $table->string('procedencia');
             $table->string('destino');
+            $table->string('tipo_transporte');
             $table->timestamps();
 
         });

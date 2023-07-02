@@ -46,6 +46,10 @@
                             </button>
                             <button @click="notifyInativo(notify.id)" class="btn btn-sm btn-danger"><i
                                     class="fa-solid fa-check-double"></i> Marcar como lida</button>
+
+                            <a class="btn btn-sm btn-success ml-2" :href="`${urlExport}${notify.id}`">
+                                            <i class="fa-solid fa-file-word"></i> Gerar comprovativo
+                                        </a>
                         </div>
                     </div>
                 </div>
@@ -85,9 +89,11 @@
 </template>
 
 <script>
+import { URL_API } from '../../../configs'
 export default {
     data() {
         return {
+            urlExport: URL_API + '/ExportToWordComprovativo/',
             acesso: '',
             notification: [],
             retornoNotify: '',

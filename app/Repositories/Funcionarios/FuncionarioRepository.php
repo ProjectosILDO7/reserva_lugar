@@ -16,6 +16,7 @@ class FuncionarioRepository
     protected $ententy;
     protected $userID;
     protected $senha;
+    public $tipo_transporte;
 
     public function __construct(User $funcionario)
     {
@@ -92,17 +93,20 @@ class FuncionarioRepository
 
             if (isset($t)) {
 
-                $infoReser = reserva::where('user_id', $this->userID)->where('transporte_id', $transporte_id)->whereDay('created_at', date('d'))->get();
-               
+                $infoReser = reserva::with('transportes')->where('user_id', $this->userID)->where('transporte_id', $transporte_id)->whereDay('created_at', date('d'))->get();
+                foreach ($infoReser as $value) {
+                    # code...
+                    $this->tipo_transporte=$value->transportes->tipo_transporte;
+                }
                 if (count($infoReser) > 0) {
-                    $transUpdate = Transporte::find($transporte_id);
+                    $transUpdate = Transporte::with('reservas')->where('tipo_transporte', 'passageiro')->orWhere('tipo_transporte', 'carga')->find($transporte_id);
 
                     $lugares = $transUpdate->total_lugares+1;
                     $t=$trans->update(['total_lugares' => $lugares]);
                     
                     if(isset($t)){
                         return response()->json([
-                            'message' => 'Você, já solicitou uma reserva hoje, porfavor tente solicitar de novo depois de 24 Horas!'
+                            'message' => 'Você, já solicitou uma reserva hoje para '.$this->tipo_transporte.', porfavor tente solicitar de novo depois de 24 Horas!'
                         ], 402);
                     }
                     
@@ -212,13 +216,11 @@ class FuncionarioRepository
         $inativar->save();
 
         if (isset($inativar)) {
-            return response()->json([
-                'message' => 'O Funcionário Foi inativado(a) com sucesso'
-            ], 200);
+            $funcionario = $this->ententy::with('departamentos', 'senha')->where('status', "!=", 1)->where('acesso',"!=","RC")->orderBy('name', 'asc')->get();
+            return response()->json($funcionario);
         } else {
-            return response()->json([
-                'message' => 'Não Foi possível inativar o funcionário'
-            ], 422);
+            $funcionario = $this->ententy::with('departamentos', 'senha')->where('status', "!=", 1)->where('acesso',"!=","RC")->orderBy('name', 'asc')->get();
+            return response()->json($funcionario);
         }
     }
 
@@ -231,13 +233,11 @@ class FuncionarioRepository
         $activar->save();
 
         if (isset($activar)) {
-            return response()->json([
-                'message' => 'O Funcionário Foi activado(a) com sucesso'
-            ], 200);
+            $funcionario = $this->ententy::with('departamentos', 'senha')->where('status', "!=", 1)->where('acesso',"!=","RC")->orderBy('name', 'asc')->get();
+            return response()->json($funcionario);
         } else {
-            return response()->json([
-                'message' => 'Não Foi possível activar o funcionário'
-            ], 422);
+            $funcionario = $this->ententy::with('departamentos', 'senha')->where('status', "!=", 1)->where('acesso',"!=","RC")->orderBy('name', 'asc')->get();
+            return response()->json($funcionario);
         }
     }
 

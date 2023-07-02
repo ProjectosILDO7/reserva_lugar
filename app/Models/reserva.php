@@ -18,6 +18,7 @@ class reserva extends Model
         return $this->belongsTo(Transporte::class, 'transporte_id');
     }
 
+
     public function clientes(){
         return $this->belongsTo(User::class, 'user_id');
     }

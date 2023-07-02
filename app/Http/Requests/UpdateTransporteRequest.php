@@ -26,6 +26,8 @@ class UpdateTransporteRequest extends FormRequest
             'preco_por_lugar'=>'required',
             'procedencia'=>'required',
             'destino'=>'required',
+            'destino'=>'required',
+            'tipo_transporte'=>'required',
         ];
     }
 
@@ -39,6 +41,8 @@ class UpdateTransporteRequest extends FormRequest
             'preco_por_lugar.required'=>'Preenchimento obrigatório',
             'procedencia.required'=>'Preenchimento obrigatório',
             'destino.required'=>'Preenchimento obrigatório',
+            'destino.required'=>'Preenchimento obrigatório',
+            'tipo_transporte.required'=>'Deves escolher o tipo de transporte',
         ];
     }       
 

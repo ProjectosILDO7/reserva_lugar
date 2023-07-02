@@ -21,11 +21,15 @@ const actions = {
     inativo({commit}, params){
         commit('PRELOADING', true)
         return FuncionariosService.inativo(params)
+                                    .then((response) =>commit('ADD_ALL_FUNCIONARIOS', response.data))
+                                    .catch((erro) => console.log(erro))
                                     .finally(()=>commit('PRELOADING', false))
     },
     activo({commit}, params){
         commit('PRELOADING', true)
         return FuncionariosService.activo(params)
+                                    .then((response) =>commit('ADD_ALL_FUNCIONARIOS', response.data))
+                                    .catch((erro) => console.log(erro))
                                     .finally(()=>commit('PRELOADING', false))
     },
 

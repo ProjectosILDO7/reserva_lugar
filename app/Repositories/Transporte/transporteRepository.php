@@ -40,6 +40,7 @@ class transporteRepository
             'preco_por_lugar' => $data['preco_por_lugar'],
             'procedencia' => $data['procedencia'],
             'destino' => $data['destino'],
+            'tipo_transporte' => $data['tipo_transporte'],
         ]);
 
         if (asset($saveTransporte)) {
